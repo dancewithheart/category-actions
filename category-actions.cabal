@@ -1,0 +1,20 @@
+cabal-version:   3.14
+name:            category-actions
+version:         0.1.0.0
+homepage:        https://github.com/dancewithheart/category-actions
+license:         MIT
+license-file:    LICENSE
+author:          Piotr Paradzinski
+maintainer:      you@example.com
+build-type:      Simple
+extra-doc-files: README.md
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+    exposed-modules:  MyLib
+    build-depends:    base ^>=4.18.3.0
+    hs-source-dirs:   src
+    default-language: Haskell2010
