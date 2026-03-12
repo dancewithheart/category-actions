@@ -10,11 +10,41 @@ build-type:      Simple
 extra-doc-files: README.md
 
 common warnings
-    ghc-options: -Wall
+  ghc-options:      -Wall
+  default-language: Haskell2010
 
 library
-    import:           warnings
-    exposed-modules:  MyLib
-    build-depends:    base >=4.18 && <4.23
-    hs-source-dirs:   src
-    default-language: GHC2021
+  import: warnings
+  hs-source-dirs: src
+
+  exposed-modules:
+      Control.Category.Action.Core
+    , Control.Category.Action.Cokleisli
+    , Control.Category.Action.Laws
+    , Control.Category.Action.Functor
+    , Control.Category.Action.Contravariant
+    , Control.Category.Action.Kleisli
+    , Control.Category.Action.MaybeFilter
+
+  build-depends:
+      base >=4.18 && <5
+    , contravariant >=1.5 && <2
+
+test-suite category-actions-test
+  import: warnings
+  type: exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is: Spec.hs
+
+  other-modules:
+      ActionLawHelpers
+    , FunctorSpec
+    , ContravariantSpec
+    , KleisliSpec
+    , CokleisliSpec
+
+  build-depends:
+      base >=4.18 && <5
+    , category-actions
+    , QuickCheck >=2.14 && <3
+    , contravariant >=1.5 && <2
